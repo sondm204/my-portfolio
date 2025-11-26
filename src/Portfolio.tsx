@@ -226,7 +226,7 @@ export const Portfolio = () => {
       <section id="hero" className="min-h-screen mx-auto relative overflow-hidden pt-20 z-10">
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className='flex items-start justify-between'>
+          <div className='flex md:items-start md:justify-between flex-col-reverse md:flex-row items-center justify-center gap-10'>
             <div className="text-center space-y-6">
               <div className="text-emerald-400 text-md font-mono">Hi, I'm</div>
               <h1 className="text-4xl md:text-7xl font-bold">
