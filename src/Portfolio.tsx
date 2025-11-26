@@ -105,7 +105,7 @@ export const Portfolio = () => {
       type: 'Team Project',
       description: 'A expense tracker application with real-time inventory management, payment integration, and admin dashboard.',
       techStack: ['ReactNative', 'TypeScript', 'Java', 'PostgreSQL'],
-      image: '/divido-project.png',
+      image: `${import.meta.env.BASE_URL}divido-project.png`,
       links: {
         github: 'https://github.com/search?q=topic:divido+user:sondm204&type=repositories',
         live: 'https://drive.google.com/drive/folders/1UReEkhxKTj_eEqSZJdWXJ1cV7b3qcce3?usp=sharing'
@@ -116,7 +116,7 @@ export const Portfolio = () => {
       type: 'Personal Project',
       description: 'A coffee shop management system with real-time updates, task assignment, and progress tracking features.',
       techStack: ['Java', 'Spring Boot', 'Spring MVC', 'MySQL', 'Thymeleaf'],
-      image: '/coffeeshop-project.png',
+      image: `${import.meta.env.BASE_URL}coffeeshop-project.png`,
       links: {
         github: 'https://github.com/sondm204/CoffeeShop',
         live: '#'
@@ -273,7 +273,7 @@ export const Portfolio = () => {
             </div>
             <div className='w-1/2 relative'>
               <div className='absolute top-0 left-0 w-full h-full bg-emerald-500/20 rounded-full z-0'></div>
-              <img src="/avatar.png" alt='avatar' className='w-full h-full object-cover rounded-full z-10 relative' />
+              <img src={`${import.meta.env.BASE_URL}avatar.png`} alt='avatar' className='w-full h-full object-cover rounded-full z-10 relative' />
             </div>
           </div>
         </div>
