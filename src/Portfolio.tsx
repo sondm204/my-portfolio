@@ -141,7 +141,7 @@ export const Portfolio = () => {
       </div>
       {/* Animated background for entire app */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-emerald-500/10 to-cyan-500/10"></div>
         {[...Array(80)].map((_, i) => (
           <div
             key={i}
@@ -157,10 +157,10 @@ export const Portfolio = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-lg z-50 border-b border-gray-800 relative">
+      <nav className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-lg z-50 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent cursor-pointer">
+            <div className="text-2xl font-bold bg-linear-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent cursor-pointer">
               Portfolio
             </div>
 
@@ -207,7 +207,7 @@ export const Portfolio = () => {
 
       {/* Animated background for entire app */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-emerald-500/10 to-cyan-500/10"></div>
         {[...Array(80)].map((_, i) => (
           <div
             key={i}
@@ -223,14 +223,14 @@ export const Portfolio = () => {
       </div>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen mx-auto relative overflow-hidden pt-20 z-10">
+      <section id="hero" className="min-h-screen mx-auto relative overflow-hidden pt-26 z-10">
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className='flex md:items-start md:justify-between flex-col-reverse md:flex-row items-center justify-center gap-10'>
             <div className="text-center space-y-6">
               <div className="text-emerald-400 text-md font-mono">Hi, I'm</div>
               <h1 className="text-4xl md:text-7xl font-bold">
-                <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                   FULLSTACK
                 </span>
                 <br />
@@ -284,7 +284,7 @@ export const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Tech Stack</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-linear-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto">
               From frontend frameworks to backend systems, databases, DevOps, and key development principles -
               this is my tech toolkit.
@@ -332,7 +332,7 @@ export const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Experiences</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-linear-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto">
               A summary of the roles and responsibilities that have shaped my professional path so far
             </p>
@@ -340,7 +340,7 @@ export const Portfolio = () => {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-emerald-400 to-cyan-400"></div>
+            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-linear-to-b from-emerald-400 to-cyan-400"></div>
 
             <div className="space-y-12">
               {experiences.map((exp, index) => (
@@ -397,7 +397,7 @@ export const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Projects</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-linear-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto">
               Explore some of the personal and team-based projects I have built showcasing my skills and expertise.
             </p>
@@ -471,7 +471,7 @@ export const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Contact Me</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-linear-to-r from-emerald-400 to-cyan-400 mx-auto mb-6"></div>
             <p className="text-gray-400 max-w-2xl mx-auto">
               I'm always happy to discuss opportunities, answer questions, or explore new ideas.
               Send a message or connect online.
