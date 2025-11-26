@@ -4,12 +4,9 @@ import { Code2, Database, Server, Wrench, BookOpen, Mail, Github, Linkedin, Exte
 export const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
-
       const sections = ['hero', 'stack', 'experience', 'projects', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
