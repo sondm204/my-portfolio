@@ -37,36 +37,21 @@ export const Portfolio = () => {
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('sending');
-    const apiKey = import.meta.env.VITE_SENDGRID_API_KEY;
-    if (!apiKey) {
+    const formId = import.meta.env.VITE_FORMSPREE_FORM_ID;
+    if (!formId) {
       setFormStatus('error');
       return;
     }
-    const body = {
-      personalizations: [{ to: [{ email: 'sondm204.work@gmail.com' }] }],
-      from: { email: 'duongminhson1601@gmail.com', name: 'Portfolio Contact' },
-      subject: `[Portfolio] ${contactForm.subject || 'New message'}`,
-      content: [
-        {
-          type: 'text/plain',
-          value: [
-            `Name: ${contactForm.name}`,
-            `Email: ${contactForm.email}`,
-            `Subject: ${contactForm.subject}`,
-            '',
-            contactForm.message
-          ].join('\n')
-        }
-      ]
-    };
     try {
-      const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      const res = await fetch(`https://formspree.io/f/${formId}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(body)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: contactForm.name,
+          email: contactForm.email,
+          subject: contactForm.subject,
+          message: contactForm.message
+        })
       });
       if (res.ok) {
         setFormStatus('success');
