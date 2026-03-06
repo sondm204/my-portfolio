@@ -4,6 +4,8 @@ import { Code2, Database, Server, Wrench, BookOpen, Mail, Github, Linkedin, Exte
 export const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +31,51 @@ export const Portfolio = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+    }
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('sending');
+    const apiKey = import.meta.env.VITE_SENDGRID_API_KEY;
+    if (!apiKey) {
+      setFormStatus('error');
+      return;
+    }
+    const body = {
+      personalizations: [{ to: [{ email: 'sondm204.work@gmail.com' }] }],
+      from: { email: 'duongminhson1601@gmail.com', name: 'Portfolio Contact' },
+      subject: `[Portfolio] ${contactForm.subject || 'New message'}`,
+      content: [
+        {
+          type: 'text/plain',
+          value: [
+            `Name: ${contactForm.name}`,
+            `Email: ${contactForm.email}`,
+            `Subject: ${contactForm.subject}`,
+            '',
+            contactForm.message
+          ].join('\n')
+        }
+      ]
+    };
+    try {
+      const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        setFormStatus('success');
+        setContactForm({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setFormStatus('error');
+      }
+    } catch {
+      setFormStatus('error');
     }
   };
 
@@ -72,7 +119,7 @@ export const Portfolio = () => {
 
   const experiences = [
     {
-      company: 'Pandas',
+      company: 'Pandas Software',
       role: 'Junior Fullstack Developer',
       period: 'Oct 2024 - Present',
       duration: '1+ years',
@@ -527,12 +574,14 @@ export const Portfolio = () => {
 
             {/* Contact Form */}
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6">
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleContactSubmit}>
                 <div>
                   <label className="block text-sm text-gray-400 mb-2">Name</label>
                   <input
                     type="text"
                     placeholder="Enter your name"
+                    value={contactForm.name}
+                    onChange={e => setContactForm(f => ({ ...f, name: e.target.value }))}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:outline-none text-gray-100"
                   />
                 </div>
@@ -541,6 +590,8 @@ export const Portfolio = () => {
                   <input
                     type="email"
                     placeholder="Enter your email"
+                    value={contactForm.email}
+                    onChange={e => setContactForm(f => ({ ...f, email: e.target.value }))}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:outline-none text-gray-100"
                   />
                 </div>
@@ -549,6 +600,8 @@ export const Portfolio = () => {
                   <input
                     type="text"
                     placeholder="Enter subject"
+                    value={contactForm.subject}
+                    onChange={e => setContactForm(f => ({ ...f, subject: e.target.value }))}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:outline-none text-gray-100"
                   />
                 </div>
@@ -557,14 +610,23 @@ export const Portfolio = () => {
                   <textarea
                     rows={4}
                     placeholder="Enter your message"
+                    value={contactForm.message}
+                    onChange={e => setContactForm(f => ({ ...f, message: e.target.value }))}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:outline-none text-gray-100 resize-none"
-                  ></textarea>
+                  />
                 </div>
+                {formStatus === 'success' && (
+                  <p className="text-sm text-emerald-400">Message sent successfully.</p>
+                )}
+                {formStatus === 'error' && (
+                  <p className="text-sm text-red-400">Failed to send.</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition-colors"
+                  disabled={formStatus === 'sending'}
+                  className="cursor-pointer w-full px-6 py-3 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
