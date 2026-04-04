@@ -77,7 +77,7 @@ export const Portfolio = () => {
       description: 'Creating robust APIs and server-side applications.',
       level: 'Advanced',
       icon: <Server className="w-6 h-6" />,
-      techs: ['Java', 'Springboot', '.NET', 'C#', 'JWT', 'OAuth2']
+      techs: ['Java', 'Springboot', '.NET', 'C#', 'JWT', 'OAuth2', 'Kafka']
     },
     database: {
       title: 'Database',
@@ -98,7 +98,7 @@ export const Portfolio = () => {
       description: 'Core web development concepts and best practices.',
       level: 'Intermediate',
       icon: <BookOpen className="w-6 h-6" />,
-      techs: ['Responsive Design', 'Performance Optimization', 'RESTful Architecture', 'Agile/Scrum']
+      techs: ['Responsive Design', 'Performance Optimization', 'RESTful Architecture','Microservices Architecture', 'Agile/Scrum']
     }
   };
 
@@ -133,10 +133,20 @@ export const Portfolio = () => {
 
   const projects = [
     {
+      title: 'AGSS - Automated Grading Support System',
+      type: 'Team Project',
+      description: 'A grading support system for lecturers in FPT university, use AI fine-tuned models to grade the assignments and exams, generate exams, guides; apply for SWT301 (a testing course).',
+      techStack: ['ReactJS', 'TypeScript', 'Spring Boot', 'Java', 'PostgreSQL', 'Redis', 'Socket.io', 'AI-finetuning', 'Docker'],
+      image: `${import.meta.env.BASE_URL}agss-project.png`,
+      links: {
+        live: 'https://drive.google.com/file/d/1Z_o8N60EdDVYHR8XEtfAusnBr0cemXHm/view?usp=drive_link'
+      }
+    },
+    {
       title: 'Divido - Expense Tracker Application',
       type: 'Team Project',
       description: 'A expense tracker application with real-time inventory management, payment integration, and admin dashboard.',
-      techStack: ['ReactNative', 'TypeScript', 'Java', 'PostgreSQL'],
+      techStack: ['ReactNative', 'TypeScript', 'Java', 'PostgreSQL', 'Docker'],
       image: `${import.meta.env.BASE_URL}divido-project.png`,
       links: {
         github: 'https://github.com/search?q=topic:divido+user:sondm204&type=repositories',
@@ -151,7 +161,6 @@ export const Portfolio = () => {
       image: `${import.meta.env.BASE_URL}coffeeshop-project.png`,
       links: {
         github: 'https://github.com/sondm204/CoffeeShop',
-        live: '#'
       }
     }
   ];
@@ -474,22 +483,26 @@ export const Portfolio = () => {
                     </div>
                   </div>
                   <div className="flex gap-3">
-                    <a
-                      href={project.links.github}
-                      target="_blank"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-700 rounded-lg text-sm hover:border-emerald-500 hover:text-emerald-400 transition-colors"
-                    >
-                      <Github size={16} />
-                      GitHub
-                    </a>
-                    <a
-                      href={project.links.live}
-                      target="_blank"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm hover:bg-emerald-600 transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </a>
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-700 rounded-lg text-sm hover:border-emerald-500 hover:text-emerald-400 transition-colors"
+                      >
+                        <Github size={16} />
+                        GitHub
+                      </a>
+                    )}
+                    {project.links.live && (
+                      <a
+                        href={project.links.live}
+                        target="_blank"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm hover:bg-emerald-600 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
